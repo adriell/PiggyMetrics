@@ -30,12 +30,37 @@ pipeline {
           
 		}
         stage('Package'){
-           dir('account-service'){
-                docker.build("adriell/account-service:${env.BUILD_NUMBER}")
+            steps {
+                sh "docker build -t account-service:${env.BUILD_NUMBER} account-service"
             }
-            dir('auth-service'){
-                docker.build("adriell/auth-service:${env.BUILD_NUMBER}")
+            steps {
+                sh "docker build -t auth-service${env.BUILD_NUMBER} auth-service"
             }
+            steps {
+                sh "docker build -t config:${env.BUILD_NUMBER} config"
+            }
+            steps {
+                sh "docker build -t gateway:${env.BUILD_NUMBER} gateway"
+            }
+            steps {
+                sh "docker build -t mongodb:${env.BUILD_NUMBER} mongodb"
+            }
+            steps {
+                sh "docker build -t monitoring:${env.BUILD_NUMBER} monitoring"
+            }
+            steps {
+                sh "docker build -t notification-service:${env.BUILD_NUMBER} notification-service"
+            }
+            steps {
+                sh "docker build -t registry:${env.BUILD_NUMBER} registry"
+            }
+            steps {
+                sh "docker build -t statistics-service:${env.BUILD_NUMBER} statistics-service"
+            }
+            steps {
+                sh "docker build -t turbine-stream-service:${env.BUILD_NUMBER} turbine-stream-service"
+            }
+           
         }
 		stage('Deliver'){
 			steps{
