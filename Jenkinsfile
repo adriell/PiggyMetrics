@@ -26,12 +26,11 @@ pipeline {
 				always {
 					junit 'target/surefire-reports/*.xml'
 				}
-			}
-            post {
-                failure{
+                failure {
                     sh 'exit 1'
                 }
-            }
+			}
+          
 		}
 		stage('Deliver'){
 			steps{
