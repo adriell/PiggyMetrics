@@ -23,9 +23,6 @@ pipeline {
 				sh  'mvn test -B -Dmaven.javadoc.skip=true -Dcheckstyle.skip=true'
 			}
 			post {
-				always {
-					junit 'target/surefire-reports/*.xml'
-				}
                 failure {
                     sh 'exit 1'
                 }
