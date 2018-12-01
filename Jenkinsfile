@@ -29,6 +29,14 @@ pipeline {
 			}
           
 		}
+        stage('Package'){
+           dir('account-service'){
+                docker.build("adriell/account-service:${env.BUILD_NUMBER}")
+            }
+            dir('auth-service'){
+                docker.build("adriell/auth-service:${env.BUILD_NUMBER}")
+            }
+        }
 		stage('Deliver'){
 			steps{
 				sh 'echo OK'
