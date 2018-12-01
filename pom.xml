@@ -31,7 +31,8 @@
 				<scope>import</scope>
 			</dependency>
 		</dependencies>
-		<build>
+	</dependencyManagement>
+	<build>
     		<plugins>
 				<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -42,8 +43,7 @@
 				</configuration>
 			</plugin>
 			</plugins>
-		</build>
-	</dependencyManagement>
+	</build>
 	
 	<modules>
 		<module>config</module>
