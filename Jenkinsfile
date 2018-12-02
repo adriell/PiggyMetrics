@@ -30,26 +30,17 @@ pipeline {
           
 		}
         stage('Package'){
-            steps {
-                sh "docker build -t account-service:${env.BUILD_NUMBER} account-service"
-                
-                sh "docker build -t auth-service${env.BUILD_NUMBER} auth-service"
-           
-                sh "docker build -t config:${env.BUILD_NUMBER} config"
-            
-                sh "docker build -t gateway:${env.BUILD_NUMBER} gateway"
-            
-                sh "docker build -t mongodb:${env.BUILD_NUMBER} mongodb"
-           
-                sh "docker build -t notification-service:${env.BUILD_NUMBER} notification-service"
-         
-                sh "docker build -t registry:${env.BUILD_NUMBER} registry"
-           
-                sh "docker build -t statistics-service:${env.BUILD_NUMBER} statistics-service"
-          
-                sh "docker build -t turbine-stream-service:${env.BUILD_NUMBER} turbine-stream-service"
+           steps {
+                echo 'Starting to build docker image'
+
+                script {
+					dir('account-service'){
+						def customImage = docker.build("account-service:${env.BUILD_NUMBER}")
+                    	customImage.push()
+					}
+                }
             }
-           
+            
         }
 		stage('Deliver'){
 			steps{
