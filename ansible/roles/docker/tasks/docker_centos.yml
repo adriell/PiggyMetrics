@@ -1,0 +1,29 @@
+---
+- name: Install pre-requisites for install docker
+  yum:
+     name: "{{ packages }}"
+  vars:
+     packages:
+     - yum-utils
+     - device-mapper-persistent-data
+     - lvm2
+
+- name: Install docker repo
+  yum_repository:
+    name: docker-ce-stable
+    description: Docker CE STABLE - $basearch
+    baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
+    gpgcheck: yes
+    gpgkey: https://download.docker.com/linux/centos/gpg
+    enabled: yes
+
+- name: Install docker-ce
+  yum:
+     name: docker-ce
+     state: present
+
+- name: Start service docker, if not started
+  service:
+    name: docker
+    state: started
+    enabled: yes 

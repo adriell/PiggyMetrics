@@ -1,0 +1,5 @@
+---
+- name: Playbook for install tools in centos
+  hosts: all 
+  roles:
+    - deploy 

@@ -1,0 +1,13 @@
+---
+# tasks file for docker
+- name: Install docker on centos 7 
+  import_tasks: docker_centos.yml
+  when: 
+   - ansible_facts['distribution'] == "CentOS" 
+   - ansible_facts['distribution_major_version'] == "7"
+
+- name: Install docker-compose on centos 7
+  import_tasks: compose_centos.yml
+  when:
+   - ansible_facts['distribution'] == "CentOS"
+   - ansible_facts['distribution_major_version'] == "7"

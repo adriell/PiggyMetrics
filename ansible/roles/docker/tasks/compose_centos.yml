@@ -1,0 +1,10 @@
+---
+- name: Install docker compose
+  shell: curl -L "https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose
+
+- name: Execution permission in docker-compose
+  file:
+     path: /usr/bin/docker-compose
+     owner: root
+     group: root
+     mode: 0755

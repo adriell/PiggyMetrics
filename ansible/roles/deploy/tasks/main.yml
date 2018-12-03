@@ -1,0 +1,19 @@
+---
+# tasks file for deploy
+#
+- name: install git
+  yum:
+   name: git
+   state: present
+
+- name: Clone repositorio
+  git:
+    repo: https://github.com/adriell/PiggyMetrics.git
+    dest: /home/PiggyMetrics
+
+
+- name: Docker-compose down
+  shell: cd /home/PiggyMetrics && docker-compose down
+
+- name: Docker-compose up
+  shell: cd /home/PiggyMetrics && docker-compose up -d
