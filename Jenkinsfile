@@ -40,7 +40,7 @@ node {
             config.push()
             
             def gateway = docker.build("gateway:latest" , "./gateway")
-            gateway.push()''
+            gateway.push()
             
             def mongodb = docker.build("mongodb:latest" , "./mongodb")
             mongodb.push()
