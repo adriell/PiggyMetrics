@@ -57,7 +57,7 @@ services:
       STATISTICS_SERVICE_PASSWORD: $STATISTICS_SERVICE_PASSWORD
       ACCOUNT_SERVICE_PASSWORD: $ACCOUNT_SERVICE_PASSWORD
       MONGODB_PASSWORD: $MONGODB_PASSWORD
-      image: 192.168.15.13:8123/auth-service
+    image: 192.168.15.13:8123/auth-service
     restart: always
     depends_on:
       config:
