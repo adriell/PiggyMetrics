@@ -45,6 +45,9 @@ node {
             def mongodb = docker.build("mongodb:latest" , "./mongodb")
             mongodb.push()
             
+            def monitoring = docker.build("monitoring:latest", "./monitoring")
+            monitoring.push()
+            
             def notification = docker.build("notification-service:latest" , "./notification-service")
             notification.push()
             
